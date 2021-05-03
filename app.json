@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Done",
-    "slug": "Done",
+    "name": "Done_test",
+    "slug": "done_test",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "In progress"
   }
 }
