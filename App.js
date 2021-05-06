@@ -15,6 +15,7 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [currentWeather, setCurrentWeather] = useState(null);
   const [unitsSystem, setUnitsSystem] = useState('metric');//for celsius
+
   useEffect(() => {
     load(); //async function
   }, [unitsSystem],[currentWeather]);
@@ -29,16 +30,16 @@ export default function App() {
         setErrorMessage('Location Access Needed to Run App !');
         return;
       }
-      const location = await Location.getCurrentPositionAsync();
+      const location = await Location.getCurrentPositionAsync(); //Get location
 
 
       const {latitude, longitude} = location.coords; 
 
       const weather_url = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${API_KEY}`;
 
-      const response = await fetch(weather_url);
+      const response = await fetch(weather_url); //API call
       //alert(`Latitude : ${latitude}, Longitude: ${longitude}`);
-      const result = await response.json();
+      const result = await response.json(); //Response data in json form
 
       if(response.ok){
         setCurrentWeather(result);
@@ -65,23 +66,23 @@ export default function App() {
         <WeatherDetails currentWeather={currentWeather} unitsSystem={unitsSystem}/>
       </View>
     );} //Custom components like weatherInfo used like html tags
-    else if(errorMessage){
-      return (//JSX expression
-        /*Div element, elements mapped to IOS/Android components*/
-        <View style={styles.container}>
-          <Text>{errorMessage}</Text>
-        </View>
-      );
-   }
-   else{
+  else if(errorMessage){
     return (//JSX expression
       /*Div element, elements mapped to IOS/Android components*/
       <View style={styles.container}>
-        <ActivityIndicator size="large" color={colors.PRIMARY_COLOR}/> {/*To avoid blank loading screen */}
-        <StatusBar style="auto" />
+        <Text>{errorMessage}</Text>
       </View>
     );
-   }
+  }
+  else{
+  return (//JSX expression
+    /*Div element, elements mapped to IOS/Android components*/
+    <View style={styles.container}>
+      <ActivityIndicator size="large" color={colors.PRIMARY_COLOR}/> {/*To avoid blank loading screen */}
+      <StatusBar style="auto" />
+    </View>
+  );
+  }
 }
 
 
