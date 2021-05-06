@@ -4,10 +4,12 @@ import {colors} from '../utils/index'
 import {FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons'
 const {PRIMARY_COLOR, SECOND_COLOR, BORDER_COLOR} = colors;
 export default function WeatherDetails({currentWeather, unitsSystem}) {
-    const {
+
+    const {//Destructuring similar to "using namespace" to avoid using scope resolution
         main: {feels_like, humidity, pressure},
         wind: {speed}
     } = currentWeather;
+    
     const windSpeed = unitsSystem === 'metric' ? `${Math.round(speed)} m/s` : `${Math.round(speed)} miles/h`
     return (
         <View style={styles.weatherDetails}>

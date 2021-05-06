@@ -7,6 +7,7 @@ import {colors} from '../utils/index';
 const {PRIMARY_COLOR, SECOND_COLOR} = colors;
 //Use rnf shortcut
 export default function WeatherInfo({currentWeather}) {
+    
     const {main:{temp},
            weather: [details], //Details is an array with id, main, description, icon
            name,
